@@ -1,7 +1,8 @@
-package com.example.iconscollector;
+package com.example.iconscollector.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.example.iconscollector.R;
 
 public class MainActivity extends AppCompatActivity {
 

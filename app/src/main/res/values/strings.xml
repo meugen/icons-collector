@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">IconsCollector</string>
+    
+    <string name="icons_collector_scr_title">eKay</string>
+    <string name="icons_collector_scr_next_action">Next</string>
+    <string name="icons_collector_scr_subtitle">Please identify the unreported damage area</string>
+    <string name="icons_collector_scr_front_side_label">Front side</string>
+    <string name="icons_collector_scr_back_side_label">Back side</string>
+    <string name="icons_collector_scr_left_side_label">Left side</string>
+    <string name="icons_collector_scr_right_side_label">Right side</string>
+    <string name="icons_collector_scr_comment_hint">Comment</string>
 </resources>

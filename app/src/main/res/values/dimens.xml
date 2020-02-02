@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_margin_start">@dimen/spacing_24dp</dimen>
+    <dimen name="common_margin_end">@dimen/spacing_24dp</dimen>
+    <dimen name="common_margin_top">@dimen/spacing_24dp</dimen>
+    <dimen name="common_margin_bottom">@dimen/spacing_24dp</dimen>
+
+    <dimen name="spacing_24dp">24dp</dimen>
+    <dimen name="spacing_32dp">32dp</dimen>
+</resources>
