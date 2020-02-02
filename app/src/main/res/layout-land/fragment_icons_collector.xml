@@ -47,7 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/start_guideline"
-        app:layout_constraintEnd_toStartOf="@id/image_back_side"
+        app:layout_constraintEnd_toStartOf="@id/vertical_separator_1"
         app:layout_constraintTop_toBottomOf="@id/subtitle"
         app:layout_constraintBottom_toTopOf="@id/bottom_barrier"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -56,33 +56,69 @@
         app:layout_constraintDimensionRatio="1:1"
         android:text="@string/icons_collector_scr_front_side_label"/>
 
+    <View
+        android:id="@+id/vertical_separator_1"
+        android:layout_width="@dimen/spacing_1dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/image_front_side"
+        app:layout_constraintEnd_toStartOf="@id/image_back_side"
+        app:layout_constraintTop_toTopOf="@id/image_front_side"
+        app:layout_constraintBottom_toBottomOf="@id/image_front_side"
+        android:layout_marginStart="@dimen/spacing_2dp"
+        android:layout_marginEnd="@dimen/spacing_2dp"
+        android:background="@android:color/background_dark"/>
+
     <com.example.iconscollector.ui.views.ImageWithLabelView
         android:id="@+id/image_back_side"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toEndOf="@id/image_front_side"
-        app:layout_constraintEnd_toStartOf="@id/image_left_side"
+        app:layout_constraintStart_toEndOf="@id/vertical_separator_1"
+        app:layout_constraintEnd_toStartOf="@id/vertical_separator_2"
         app:layout_constraintTop_toTopOf="@id/image_front_side"
         app:layout_constraintBottom_toBottomOf="@id/image_front_side"
         app:layout_constraintDimensionRatio="1:1"
         android:text="@string/icons_collector_scr_back_side_label"/>
 
+    <View
+        android:id="@+id/vertical_separator_2"
+        android:layout_width="@dimen/spacing_1dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/image_back_side"
+        app:layout_constraintEnd_toStartOf="@id/image_left_side"
+        app:layout_constraintTop_toTopOf="@id/image_front_side"
+        app:layout_constraintBottom_toBottomOf="@id/image_front_side"
+        android:layout_marginStart="@dimen/spacing_2dp"
+        android:layout_marginEnd="@dimen/spacing_2dp"
+        android:background="@android:color/background_dark"/>
+
     <com.example.iconscollector.ui.views.ImageWithLabelView
         android:id="@+id/image_left_side"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toEndOf="@id/image_back_side"
-        app:layout_constraintEnd_toStartOf="@id/image_right_side"
+        app:layout_constraintStart_toEndOf="@id/vertical_separator_2"
+        app:layout_constraintEnd_toStartOf="@id/vertical_separator_3"
         app:layout_constraintTop_toTopOf="@id/image_front_side"
         app:layout_constraintBottom_toBottomOf="@id/image_front_side"
         app:layout_constraintDimensionRatio="1:1"
         android:text="@string/icons_collector_scr_left_side_label"/>
 
+    <View
+        android:id="@+id/vertical_separator_3"
+        android:layout_width="@dimen/spacing_1dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/image_left_side"
+        app:layout_constraintEnd_toStartOf="@id/image_right_side"
+        app:layout_constraintTop_toTopOf="@id/image_front_side"
+        app:layout_constraintBottom_toBottomOf="@id/image_front_side"
+        android:layout_marginStart="@dimen/spacing_2dp"
+        android:layout_marginEnd="@dimen/spacing_2dp"
+        android:background="@android:color/background_dark"/>
+
     <com.example.iconscollector.ui.views.ImageWithLabelView
         android:id="@+id/image_right_side"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toEndOf="@id/image_left_side"
+        app:layout_constraintStart_toEndOf="@id/vertical_separator_3"
         app:layout_constraintEnd_toEndOf="@id/end_guideline"
         app:layout_constraintTop_toTopOf="@id/image_front_side"
         app:layout_constraintBottom_toBottomOf="@id/image_front_side"
