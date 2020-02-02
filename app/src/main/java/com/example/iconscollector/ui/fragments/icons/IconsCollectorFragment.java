@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import com.example.iconscollector.R;
 import com.example.iconscollector.ui.delegates.captureimage.CaptureImageDelegate;
+import com.example.iconscollector.ui.delegates.fromgallery.ImageFromGalleryDelegate;
 import com.example.iconscollector.ui.delegates.permissions.Permission;
 import com.example.iconscollector.ui.delegates.permissions.PermissionsDelegate;
 import com.example.iconscollector.ui.dialogs.phototype.SelectPhotoTypeDialog;
@@ -32,6 +33,7 @@ public class IconsCollectorFragment extends Fragment implements SelectPhotoTypeD
 
     private PermissionsDelegate permissionsDelegate;
     private CaptureImageDelegate captureImageDelegate;
+    private ImageFromGalleryDelegate imageFromGalleryDelegate;
 
     private Uri uri = null;
 
@@ -42,6 +44,7 @@ public class IconsCollectorFragment extends Fragment implements SelectPhotoTypeD
 
         permissionsDelegate = new PermissionsDelegate(this);
         captureImageDelegate = new CaptureImageDelegate(this, requireContext().getApplicationContext());
+        imageFromGalleryDelegate = new ImageFromGalleryDelegate(this, requireContext().getApplicationContext());
     }
 
     @Nullable
@@ -81,7 +84,7 @@ public class IconsCollectorFragment extends Fragment implements SelectPhotoTypeD
 
     @Override
     public void onFromGallery(int requestCode) {
-
+        imageFromGalleryDelegate.chooseImageFromGallery(requestCode);
     }
 
     private void onSelectImage(int requestCode) {
@@ -108,7 +111,11 @@ public class IconsCollectorFragment extends Fragment implements SelectPhotoTypeD
         if (view == null) {
             return;
         }
-        view.setImageURI(uri);
+        Uri _uri = data == null ? null : data.getData();
+        if (_uri == null) {
+            _uri = this.uri;
+        }
+        view.setImageURI(_uri);
     }
 
     @Nullable
