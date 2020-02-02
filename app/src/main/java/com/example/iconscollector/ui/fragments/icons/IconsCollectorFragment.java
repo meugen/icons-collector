@@ -1,8 +1,6 @@
 package com.example.iconscollector.ui.fragments.icons;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import com.example.iconscollector.R;
 import com.example.iconscollector.app.App;
@@ -23,17 +20,14 @@ import com.example.iconscollector.ui.delegates.fromgallery.ImageFromGalleryDeleg
 import com.example.iconscollector.ui.delegates.permissions.Permission;
 import com.example.iconscollector.ui.delegates.permissions.PermissionsDelegate;
 import com.example.iconscollector.ui.dialogs.phototype.SelectPhotoTypeDialog;
-import com.example.iconscollector.ui.views.ImageWithLabelView;
 
 public class IconsCollectorFragment extends Fragment implements
-        SelectPhotoTypeDialog.OnPictureTypeSelectedListener, ComponentInjectable {
+        SelectPhotoTypeDialog.OnPictureTypeSelectedListener, ComponentInjectable,
+        IconsCollectorBinding.OnSelectImageWithRequestListener {
 
     private static final String ARG_URI = "uri";
 
-    private static final int FRONT_SIDE_REQUEST = 1;
-    private static final int BACK_SIDE_REQUEST = 2;
-    private static final int LEFT_SIDE_REQUEST = 3;
-    private static final int RIGHT_SIDE_REQUEST = 4;
+    private IconsCollectorBinding binding;
 
     private PermissionsDelegate permissionsDelegate;
     private CaptureImageDelegate captureImageDelegate;
@@ -50,6 +44,8 @@ public class IconsCollectorFragment extends Fragment implements
 
     @Override
     public void inject(AppComponent component) {
+        binding = new IconsCollectorBinding();
+
         permissionsDelegate = component.getPermissionsDelegate(this);
         captureImageDelegate = component.getCaptureImageDelegate(this);
         imageFromGalleryDelegate = component.getImageFromGalleryDelegate(this);
@@ -64,15 +60,11 @@ public class IconsCollectorFragment extends Fragment implements
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.attachView(this, view);
 
-        ViewCompat.<ImageWithLabelView>requireViewById(view, R.id.image_back_side)
-                .setSelectImageListener(v -> onSelectImage(BACK_SIDE_REQUEST));
-        ViewCompat.<ImageWithLabelView>requireViewById(view, R.id.image_front_side)
-                .setSelectImageListener(v -> onSelectImage(FRONT_SIDE_REQUEST));
-        ViewCompat.<ImageWithLabelView>requireViewById(view, R.id.image_left_side)
-                .setSelectImageListener(v -> onSelectImage(LEFT_SIDE_REQUEST));
-        ViewCompat.<ImageWithLabelView>requireViewById(view, R.id.image_right_side)
-                .setSelectImageListener(v -> onSelectImage(RIGHT_SIDE_REQUEST));
+        binding.setOnSelectImageListener(this);
+        binding.get(R.id.next_action)
+                .setOnClickListener(v -> onNextAction());
     }
 
     @Override
@@ -95,7 +87,20 @@ public class IconsCollectorFragment extends Fragment implements
         imageFromGalleryDelegate.chooseImageFromGallery(requestCode);
     }
 
-    private void onSelectImage(int requestCode) {
+    private void onNextAction() {
+        if (!binding.checkForErrors()) {
+            return;
+        }
+        Toast.makeText(
+                requireContext(),
+                "send images and comment somewhere",
+                Toast.LENGTH_LONG
+        ).show();
+        // TODO send images and comment somewhere
+    }
+
+    @Override
+    public void onSelectImage(int requestCode) {
         SelectPhotoTypeDialog dialog = new SelectPhotoTypeDialog();
         dialog.setTargetFragment(this, requestCode);
         dialog.show(requireFragmentManager(), "select-photo-type");
@@ -115,33 +120,11 @@ public class IconsCollectorFragment extends Fragment implements
         if (resultCode != Activity.RESULT_OK) {
             return;
         }
-        ImageWithLabelView view = findViewByRequestCode(requestCode);
-        if (view == null) {
-            return;
-        }
         Uri _uri = data == null ? null : data.getData();
         if (_uri == null) {
             _uri = this.uri;
         }
-        view.setImageURI(_uri);
-    }
-
-    @Nullable
-    private ImageWithLabelView findViewByRequestCode(int requestCode) {
-        View view = getView();
-        if (view == null) {
-            return null;
-        }
-        if (requestCode == FRONT_SIDE_REQUEST) {
-            return view.findViewById(R.id.image_front_side);
-        } else if (requestCode == BACK_SIDE_REQUEST) {
-            return view.findViewById(R.id.image_back_side);
-        } else if (requestCode == LEFT_SIDE_REQUEST) {
-            return view.findViewById(R.id.image_left_side);
-        } else if (requestCode == RIGHT_SIDE_REQUEST) {
-            return view.findViewById(R.id.image_right_side);
-        }
-        return null;
+        binding.displayImageByRequest(requestCode, _uri);
     }
 
     private void captureImage(int requestCode) {

@@ -9,6 +9,7 @@
     <string name="icons_collector_scr_left_side_label">Left side</string>
     <string name="icons_collector_scr_right_side_label">Right side</string>
     <string name="icons_collector_scr_comment_hint">Comment</string>
+    <string name="icons_collector_scr_required_field_error">Required field</string>
 
     <string name="picture_type_dlg_title">Select picture type</string>
     <string name="picture_type_dlg_capture_image_label">Capture image</string>
