@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/common_margin_start"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/common_margin_end"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/icons_collector_scr_title"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/common_margin_top"/>
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:layout_marginTop="@dimen/spacing_32dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/icons_collector_scr_subtitle"
+        android:gravity="center"/>
+
+    <com.example.iconscollector.ui.views.ImageWithLabelView
+        android:id="@+id/image_front_side"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintEnd_toStartOf="@id/image_back_side"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        app:layout_constraintBottom_toTopOf="@id/next_action"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginStart="@dimen/spacing_32dp"
+        android:layout_marginLeft="@dimen/spacing_32dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:text="@string/icons_collector_scr_front_side_label"/>
+
+    <com.example.iconscollector.ui.views.ImageWithLabelView
+        android:id="@+id/image_back_side"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/image_front_side"
+        app:layout_constraintEnd_toStartOf="@id/image_left_side"
+        app:layout_constraintTop_toTopOf="@id/image_front_side"
+        app:layout_constraintBottom_toBottomOf="@id/image_front_side"
+        app:layout_constraintDimensionRatio="1:1"
+        android:text="@string/icons_collector_scr_back_side_label"/>
+
+    <com.example.iconscollector.ui.views.ImageWithLabelView
+        android:id="@+id/image_left_side"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/image_back_side"
+        app:layout_constraintEnd_toStartOf="@id/image_right_side"
+        app:layout_constraintTop_toTopOf="@id/image_front_side"
+        app:layout_constraintBottom_toBottomOf="@id/image_front_side"
+        app:layout_constraintDimensionRatio="1:1"
+        android:text="@string/icons_collector_scr_left_side_label"/>
+
+    <com.example.iconscollector.ui.views.ImageWithLabelView
+        android:id="@+id/image_right_side"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/image_left_side"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintTop_toTopOf="@id/image_front_side"
+        app:layout_constraintBottom_toBottomOf="@id/image_front_side"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_marginEnd="@dimen/spacing_32dp"
+        android:layout_marginRight="@dimen/spacing_32dp"
+        android:text="@string/icons_collector_scr_right_side_label"/>
+
+    <Button
+        android:id="@+id/next_action"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/common_margin_bottom"
+        android:text="@string/icons_collector_scr_next_action"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
