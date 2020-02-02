@@ -15,6 +15,9 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import com.example.iconscollector.R;
+import com.example.iconscollector.app.App;
+import com.example.iconscollector.app.di.AppComponent;
+import com.example.iconscollector.app.di.ComponentInjectable;
 import com.example.iconscollector.ui.delegates.captureimage.CaptureImageDelegate;
 import com.example.iconscollector.ui.delegates.fromgallery.ImageFromGalleryDelegate;
 import com.example.iconscollector.ui.delegates.permissions.Permission;
@@ -22,7 +25,8 @@ import com.example.iconscollector.ui.delegates.permissions.PermissionsDelegate;
 import com.example.iconscollector.ui.dialogs.phototype.SelectPhotoTypeDialog;
 import com.example.iconscollector.ui.views.ImageWithLabelView;
 
-public class IconsCollectorFragment extends Fragment implements SelectPhotoTypeDialog.OnPictureTypeSelectedListener {
+public class IconsCollectorFragment extends Fragment implements
+        SelectPhotoTypeDialog.OnPictureTypeSelectedListener, ComponentInjectable {
 
     private static final String ARG_URI = "uri";
 
@@ -40,11 +44,15 @@ public class IconsCollectorFragment extends Fragment implements SelectPhotoTypeD
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.inject(this);
         uri = savedInstanceState == null ? null : savedInstanceState.getParcelable(ARG_URI);
+    }
 
-        permissionsDelegate = new PermissionsDelegate(this);
-        captureImageDelegate = new CaptureImageDelegate(this, requireContext().getApplicationContext());
-        imageFromGalleryDelegate = new ImageFromGalleryDelegate(this, requireContext().getApplicationContext());
+    @Override
+    public void inject(AppComponent component) {
+        permissionsDelegate = component.getPermissionsDelegate(this);
+        captureImageDelegate = component.getCaptureImageDelegate(this);
+        imageFromGalleryDelegate = component.getImageFromGalleryDelegate(this);
     }
 
     @Nullable
