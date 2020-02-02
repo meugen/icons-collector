@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import com.example.iconscollector.R;
 
 public class ImageWithLabelView extends FrameLayout {
@@ -33,8 +34,8 @@ public class ImageWithLabelView extends FrameLayout {
     private void init(Context context, @Nullable AttributeSet attrs) {
         View.inflate(context, R.layout.view_image_with_label, this);
 
-        imageView = findViewById(R.id.image);
-        labelView = findViewById(R.id.label);
+        imageView = ViewCompat.requireViewById(this, R.id.image);
+        labelView = ViewCompat.requireViewById(this, R.id.label);
 
         if (attrs != null) {
             TypedArray array = context.obtainStyledAttributes(attrs, new int[] { android.R.attr.text });
