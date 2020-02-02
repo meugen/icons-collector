@@ -9,4 +9,6 @@
     <string name="icons_collector_scr_left_side_label">Left side</string>
     <string name="icons_collector_scr_right_side_label">Right side</string>
     <string name="icons_collector_scr_comment_hint">Comment</string>
+
+    <string name="commen_image_capture_error_message">Can\'t capture an image</string>
 </resources>
