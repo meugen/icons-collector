@@ -18,9 +18,10 @@ import com.example.iconscollector.R;
 import com.example.iconscollector.ui.delegates.captureimage.CaptureImageDelegate;
 import com.example.iconscollector.ui.delegates.permissions.Permission;
 import com.example.iconscollector.ui.delegates.permissions.PermissionsDelegate;
+import com.example.iconscollector.ui.dialogs.phototype.SelectPhotoTypeDialog;
 import com.example.iconscollector.ui.views.ImageWithLabelView;
 
-public class IconsCollectorFragment extends Fragment {
+public class IconsCollectorFragment extends Fragment implements SelectPhotoTypeDialog.OnPictureTypeSelectedListener {
 
     private static final String ARG_URI = "uri";
 
@@ -69,12 +70,24 @@ public class IconsCollectorFragment extends Fragment {
         outState.putParcelable(ARG_URI, uri);
     }
 
-    private void onSelectImage(int requestCode) {
+    @Override
+    public void onCaptureImage(int requestCode) {
         if (permissionsDelegate.checkPermission(Permission.WRITE_STORAGE)) {
             captureImage(requestCode);
         } else {
             requestWriteStoragePermission(requestCode);
         }
+    }
+
+    @Override
+    public void onFromGallery(int requestCode) {
+
+    }
+
+    private void onSelectImage(int requestCode) {
+        SelectPhotoTypeDialog dialog = new SelectPhotoTypeDialog();
+        dialog.setTargetFragment(this, requestCode);
+        dialog.show(requireFragmentManager(), "select-photo-type");
     }
 
     @Override

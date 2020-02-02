@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/picture_type_dlg_title"
+        android:padding="@dimen/spacing_8dp"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_1dp"
+        android:background="@android:color/background_dark"/>
+
+    <TextView
+        android:id="@+id/capture_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="@dimen/spacing_8dp"
+        android:text="@string/picture_type_dlg_capture_image_label"
+        android:background="?selectableItemBackground"/>
+
+    <TextView
+        android:id="@+id/from_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="@dimen/spacing_8dp"
+        android:text="@string/picture_type_dlg_choose_from_gallery_label"
+        android:background="?selectableItemBackground"/>
+
+</LinearLayout>

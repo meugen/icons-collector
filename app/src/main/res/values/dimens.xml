@@ -5,6 +5,10 @@
     <dimen name="common_margin_top">@dimen/spacing_24dp</dimen>
     <dimen name="common_margin_bottom">@dimen/spacing_24dp</dimen>
 
+    <dimen name="spacing_1dp">1dp</dimen>
+    <dimen name="spacing_2dp">2dp</dimen>
+    <dimen name="spacing_4dp">4dp</dimen>
+    <dimen name="spacing_8dp">8dp</dimen>
     <dimen name="spacing_24dp">24dp</dimen>
     <dimen name="spacing_32dp">32dp</dimen>
 </resources>
